@@ -28,7 +28,7 @@ public class Category implements java.io.Serializable {
 		this.idCategory = idCategory;
 	}
 
-	public Category(int idCategory, String libele, Set works) {
+	public Category(int idCategory, String libele, Set<Work> works) {
 		this.idCategory = idCategory;
 		this.libele = libele;
 		this.works = works;
@@ -55,11 +55,11 @@ public class Category implements java.io.Serializable {
 	}
 
 	
-	public Set getWorks() {
+	public Set<Work> getWorks() {
 		return this.works;
 	}
 
-	public void setWorks(Set works) {
+	public void setWorks(Set<Work> works) {
 		this.works = works;
 	}
 

@@ -23,7 +23,11 @@ import javax.persistence.TemporalType;
 public class Work implements java.io.Serializable {
 
 	private int idWork;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user", nullable = false)
 	private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category", nullable = false)
 	private Category category;
 	private String titre;
 	private String compositeur;
@@ -79,8 +83,7 @@ public class Work implements java.io.Serializable {
 		this.idWork = idWork;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUser", nullable = false)
+	
 	public User getUser() {
 		return this.user;
 	}
@@ -89,8 +92,7 @@ public class Work implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idCategory", nullable = false)
+	
 	public Category getCategory() {
 		return this.category;
 	}

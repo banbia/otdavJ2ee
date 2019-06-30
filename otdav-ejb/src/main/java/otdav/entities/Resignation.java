@@ -20,6 +20,8 @@ import javax.persistence.Table;
 public class Resignation implements java.io.Serializable {
 
 	private int idResignation;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user", nullable = false)
 	private User user;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resignation")
 	private Set<User> users = new HashSet(0);
@@ -49,8 +51,7 @@ public class Resignation implements java.io.Serializable {
 		this.idResignation = idResignation;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUser", nullable = false)
+	
 	public User getUser() {
 		return this.user;
 	}

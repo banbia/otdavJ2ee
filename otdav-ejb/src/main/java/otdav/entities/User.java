@@ -23,6 +23,8 @@ import javax.persistence.TemporalType;
 public class User implements java.io.Serializable {
 
 	private int idUser;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "resignation")
 	private Resignation resignation;
 	private String lastName;
 	private String firstName;
@@ -130,8 +132,7 @@ public class User implements java.io.Serializable {
 		this.idUser = idUser;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idResignation")
+	
 	public Resignation getResignation() {
 		return this.resignation;
 	}
