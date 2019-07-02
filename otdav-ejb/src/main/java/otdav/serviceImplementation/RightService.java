@@ -1,17 +1,20 @@
-package otdav.business;
+package otdav.serviceImplementation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import otdav.entities.Right;
+import otdav.services.IRightService;
 import otdav.utils.JPAUtil;
 
-public class RightBusiness {
+public class RightService implements IRightService{
 	private List<Right> rights;
-	EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-	public RightBusiness() {
+	@PersistenceContext(unitName = "otdav-ejb")
+	EntityManager em;
+	public RightService() {
 		rights=new ArrayList<Right>();
 		rights.add(new Right(1,"ref1","Libelle1", "Lorem ispum sit amet dolor"));
 		rights.add(new Right(2,"ref2","Libelle2", "Lorem ispum sit amet dolor"));
@@ -37,20 +40,14 @@ public class RightBusiness {
 		return null;
 	}
 	
-	public boolean addRight(Right right){
-	    entityManager.getTransaction().begin();
-	    entityManager.persist(right);
-	    entityManager.getTransaction().commit();
-		return false;
+	public void addRight(Right right){
+		em.persist(right);		
 	}
-	public boolean updateRight(int idRight, Right rendezVous){
-		
-		return false;
+	public void updateRight(Right right){
+		em.persist(right);
 	}
 	
-	public boolean deleteRight(int id){
-		entityManager.getTransaction().begin();
-	    entityManager.remove(id);
-		return false;
+	public void deleteRight(Right right){
+		em.remove(right);
 	}
 }

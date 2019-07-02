@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: Safraw
-=======
-Built-By: Yora
->>>>>>> f1caadc49f4ff5fd71ee4bb020258ba0ae23d174
-Build-Jdk: 1.8.0_201
+Built-By: Banbia
+Build-Jdk: 1.8.0_111
 Created-By: Maven Integration for Eclipse
 
