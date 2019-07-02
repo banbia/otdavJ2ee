@@ -26,9 +26,6 @@ public class WorkDeposit implements java.io.Serializable {
 	private Integer typeCategorie;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "workDeposit")
 	private Set<Deposit> deposits = new HashSet(0);
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "workDeposit")
-	private Set<Fees> feeses = new HashSet(0);
-
 	public WorkDeposit() {
 	}
 
@@ -37,7 +34,7 @@ public class WorkDeposit implements java.io.Serializable {
 	}
 
 	public WorkDeposit(int idWorkDeposit, Integer idantifiantUnique, String titre, String auteur, String description,
-			String support, Integer typeCategorie, Set deposits, Set feeses) {
+			String support, Integer typeCategorie, Set deposits) {
 		this.idWorkDeposit = idWorkDeposit;
 		this.idantifiantUnique = idantifiantUnique;
 		this.titre = titre;
@@ -46,7 +43,6 @@ public class WorkDeposit implements java.io.Serializable {
 		this.support = support;
 		this.typeCategorie = typeCategorie;
 		this.deposits = deposits;
-		this.feeses = feeses;
 	}
 
 	@Id
@@ -123,13 +119,5 @@ public class WorkDeposit implements java.io.Serializable {
 		this.deposits = deposits;
 	}
 
-	
-	public Set getFeeses() {
-		return this.feeses;
-	}
-
-	public void setFeeses(Set feeses) {
-		this.feeses = feeses;
-	}
 
 }
