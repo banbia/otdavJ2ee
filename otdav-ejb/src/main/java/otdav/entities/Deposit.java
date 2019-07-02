@@ -27,7 +27,7 @@ public class Deposit implements java.io.Serializable {
 	private Integer numQuitance;
 	private Date dateDebutDepot;
 	private Date dateFinDepot;
-	private String etat;
+	private Etat etat;
 
 	public Deposit() {
 	}
@@ -39,7 +39,7 @@ public class Deposit implements java.io.Serializable {
 	}
 
 	public Deposit(int idDeposit, User user, WorkDeposit workDeposit, Integer numDepot, Date dateDepot,
-			Integer numQuitance, Date dateDebutDepot, Date dateFinDepot, String etat) {
+			Integer numQuitance, Date dateDebutDepot, Date dateFinDepot, Etat etat) {
 		this.idDeposit = idDeposit;
 		this.user = user;
 		this.workDeposit = workDeposit;
@@ -131,11 +131,11 @@ public class Deposit implements java.io.Serializable {
 	}
 
 	@Column(name = "etat", length = 254)
-	public String getEtat() {
+	public Etat getEtat() {
 		return this.etat;
 	}
 
-	public void setEtat(String etat) {
+	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
 
