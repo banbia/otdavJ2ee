@@ -17,20 +17,53 @@ import javax.persistence.Table;
 public class Fees implements java.io.Serializable {
 
 	private int idFees;
-	private WorkDeposit workDeposit;
 	private Float montant;
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryUser", nullable = false)
+	private CategoryUser categoryUser;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user", nullable = false)
+	private User user;
 	public Fees() {
 	}
 
-	public Fees(int idFees, WorkDeposit workDeposit) {
+	public Fees(int idFees, Float montant, CategoryUser categoryUser, User user) {
+		super();
 		this.idFees = idFees;
-		this.workDeposit = workDeposit;
+		this.montant = montant;
+		this.categoryUser = categoryUser;
+		this.user = user;
 	}
 
-	public Fees(int idFees, WorkDeposit workDeposit, Float montant) {
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setCategoryUser(CategoryUser categoryUser) {
+		this.categoryUser = categoryUser;
+	}
+
+	public Fees(int idFees, Float montant, int idCategory) {
+		super();
 		this.idFees = idFees;
-		this.workDeposit = workDeposit;
+		this.montant = montant;
+		this.categoryUser = categoryUser;
+	}
+
+	public CategoryUser getCategoryUser() {
+		return categoryUser;
+	}
+
+	public void setCategoryUser(int idCategory) {
+		this.categoryUser = categoryUser;
+	}
+
+	public Fees(int idFees, Float montant) {
+		this.idFees = idFees;
 		this.montant = montant;
 	}
 
@@ -45,15 +78,6 @@ public class Fees implements java.io.Serializable {
 		this.idFees = idFees;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idWorkDeposit", nullable = false)
-	public WorkDeposit getWorkDeposit() {
-		return this.workDeposit;
-	}
-
-	public void setWorkDeposit(WorkDeposit workDeposit) {
-		this.workDeposit = workDeposit;
-	}
 
 	@Column(name = "montant", precision = 12, scale = 0)
 	public Float getMontant() {
