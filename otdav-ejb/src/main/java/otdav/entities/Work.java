@@ -4,11 +4,15 @@ package otdav.entities;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,9 +30,6 @@ public class Work implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user", nullable = false)
 	private User user;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category", nullable = false)
-	private Category category;
 	private String titre;
 	private String compositeur;
 	private String ville;
@@ -50,16 +51,17 @@ public class Work implements java.io.Serializable {
 	private String copydeclarationOfExistance;
 	private String copymanagerIdentityCard;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "work")
-	private Set<Division> divisions = new HashSet(0);
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "works_rights", joinColumns = { @JoinColumn(name = "FK_WORK") }, inverseJoinColumns = {
+			@JoinColumn(name = "FK_RIGHT") })
+	private Set<Right> rights = new HashSet(0);
 
 	public Work() {
 	}
 
-	public Work(int idWork, User user, Category category) {
+	public Work(int idWork, User user) {
 		this.idWork = idWork;
 		this.user = user;
-		this.category = category;
 	}
 	
 	
@@ -68,16 +70,14 @@ public class Work implements java.io.Serializable {
 		super();
 		this.idWork = idWork;
 		this.user = user;
-		this.category = category;
 		this.typeWork = typeWork;
 	}
 
-	public Work(int idWork, User user, Category category, String titre, String compositeur, String ville, Date date,
+	public Work(int idWork, User user, String titre, String compositeur, String ville, Date date,
 			String genre, Integer duree, Float pourcentAdaptateur, Float pourcentArrangeur, Float pourcentAuteur,
-			Float pourcentCompositeur, Float pourcentEditeur, Set divisions) {
+			Float pourcentCompositeur, Float pourcentEditeur) {
 		this.idWork = idWork;
 		this.user = user;
-		this.category = category;
 		this.titre = titre;
 		this.compositeur = compositeur;
 		this.ville = ville;
@@ -89,18 +89,16 @@ public class Work implements java.io.Serializable {
 		this.pourcentAuteur = pourcentAuteur;
 		this.pourcentCompositeur = pourcentCompositeur;
 		this.pourcentEditeur = pourcentEditeur;
-		this.divisions = divisions;
 	}
 	
 	
 
-	public Work(int idWork, User user, Category category, String titre, String compositeur, String ville, Date date,
+	public Work(int idWork, User user, String titre, String compositeur, String ville, Date date,
 			String genre, Integer duree, Float pourcentAdaptateur, Float pourcentArrangeur, Float pourcentAuteur,
 			Float pourcentCompositeur, Float pourcentEditeur, TypeWork typeWork, Set<Division> divisions) {
 		super();
 		this.idWork = idWork;
 		this.user = user;
-		this.category = category;
 		this.titre = titre;
 		this.compositeur = compositeur;
 		this.ville = ville;
@@ -134,15 +132,6 @@ public class Work implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	
-	public Category getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
 	}
 
 	@Column(name = "titre", length = 254)
@@ -244,16 +233,7 @@ public class Work implements java.io.Serializable {
 	public void setPourcentEditeur(Float pourcentEditeur) {
 		this.pourcentEditeur = pourcentEditeur;
 	}
-
 	
-	public Set getDivisions() {
-		return this.divisions;
-	}
-
-	public void setDivisions(Set divisions) {
-		this.divisions = divisions;
-	}
-
 	public TypeWork getTypeWork() {
 		return typeWork;
 	}
@@ -325,7 +305,5 @@ public class Work implements java.io.Serializable {
 	public void setCopymanagerIdentityCard(String copymanagerIdentityCard) {
 		this.copymanagerIdentityCard = copymanagerIdentityCard;
 	}
-
-	
 
 }

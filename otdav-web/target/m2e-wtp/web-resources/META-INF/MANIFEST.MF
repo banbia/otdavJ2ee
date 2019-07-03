@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Yora
 Build-Jdk: 1.8.0_201
+=======
+Built-By: Banbia
+Build-Jdk: 1.8.0_111
+>>>>>>> 658e4a924d226b5f92d9b4377fe7dc98a3d0a40d
 Created-By: Maven Integration for Eclipse
 
