@@ -40,6 +40,16 @@ public class Work implements java.io.Serializable {
 	private Float pourcentAuteur;
 	private Float pourcentCompositeur;
 	private Float pourcentEditeur;
+	private TypeWork typeWork;
+	private String bulletinOfdeclaration;
+	private String copyOfWork;
+	private String tradRegisterExcept;
+	private String statutOfCompany;
+	private String copyOfThePublicationOfCaompnyJORT;
+	private String copyTaxIdentificationNumber;
+	private String copydeclarationOfExistance;
+	private String copymanagerIdentityCard;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "work")
 	private Set<Division> divisions = new HashSet(0);
 
@@ -50,6 +60,16 @@ public class Work implements java.io.Serializable {
 		this.idWork = idWork;
 		this.user = user;
 		this.category = category;
+	}
+	
+	
+
+	public Work(int idWork, User user, Category category, TypeWork typeWork) {
+		super();
+		this.idWork = idWork;
+		this.user = user;
+		this.category = category;
+		this.typeWork = typeWork;
 	}
 
 	public Work(int idWork, User user, Category category, String titre, String compositeur, String ville, Date date,
@@ -69,6 +89,30 @@ public class Work implements java.io.Serializable {
 		this.pourcentAuteur = pourcentAuteur;
 		this.pourcentCompositeur = pourcentCompositeur;
 		this.pourcentEditeur = pourcentEditeur;
+		this.divisions = divisions;
+	}
+	
+	
+
+	public Work(int idWork, User user, Category category, String titre, String compositeur, String ville, Date date,
+			String genre, Integer duree, Float pourcentAdaptateur, Float pourcentArrangeur, Float pourcentAuteur,
+			Float pourcentCompositeur, Float pourcentEditeur, TypeWork typeWork, Set<Division> divisions) {
+		super();
+		this.idWork = idWork;
+		this.user = user;
+		this.category = category;
+		this.titre = titre;
+		this.compositeur = compositeur;
+		this.ville = ville;
+		this.date = date;
+		this.genre = genre;
+		this.duree = duree;
+		this.pourcentAdaptateur = pourcentAdaptateur;
+		this.pourcentArrangeur = pourcentArrangeur;
+		this.pourcentAuteur = pourcentAuteur;
+		this.pourcentCompositeur = pourcentCompositeur;
+		this.pourcentEditeur = pourcentEditeur;
+		this.typeWork = typeWork;
 		this.divisions = divisions;
 	}
 
@@ -209,5 +253,79 @@ public class Work implements java.io.Serializable {
 	public void setDivisions(Set divisions) {
 		this.divisions = divisions;
 	}
+
+	public TypeWork getTypeWork() {
+		return typeWork;
+	}
+
+	public void setTypeWork(TypeWork typeWork) {
+		this.typeWork = typeWork;
+	}
+
+	public String getBulletinOfdeclaration() {
+		return bulletinOfdeclaration;
+	}
+
+	public void setBulletinOfdeclaration(String bulletinOfdeclaration) {
+		this.bulletinOfdeclaration = bulletinOfdeclaration;
+	}
+
+	public String getCopyOfWork() {
+		return copyOfWork;
+	}
+
+	public void setCopyOfWork(String copyOfWork) {
+		this.copyOfWork = copyOfWork;
+	}
+
+	public String getTradRegisterExcept() {
+		return tradRegisterExcept;
+	}
+
+	public void setTradRegisterExcept(String tradRegisterExcept) {
+		this.tradRegisterExcept = tradRegisterExcept;
+	}
+
+	public String getStatutOfCompany() {
+		return statutOfCompany;
+	}
+
+	public void setStatutOfCompany(String statutOfCompany) {
+		this.statutOfCompany = statutOfCompany;
+	}
+
+	public String getCopyOfThePublicationOfCaompnyJORT() {
+		return copyOfThePublicationOfCaompnyJORT;
+	}
+
+	public void setCopyOfThePublicationOfCaompnyJORT(String copyOfThePublicationOfCaompnyJORT) {
+		this.copyOfThePublicationOfCaompnyJORT = copyOfThePublicationOfCaompnyJORT;
+	}
+
+	public String getCopyTaxIdentificationNumber() {
+		return copyTaxIdentificationNumber;
+	}
+
+	public void setCopyTaxIdentificationNumber(String copyTaxIdentificationNumber) {
+		this.copyTaxIdentificationNumber = copyTaxIdentificationNumber;
+	}
+
+	public String getCopydeclarationOfExistance() {
+		return copydeclarationOfExistance;
+	}
+
+	public void setCopydeclarationOfExistance(String copydeclarationOfExistance) {
+		this.copydeclarationOfExistance = copydeclarationOfExistance;
+	}
+
+	public String getCopymanagerIdentityCard() {
+		return copymanagerIdentityCard;
+	}
+
+	public void setCopymanagerIdentityCard(String copymanagerIdentityCard) {
+		this.copymanagerIdentityCard = copymanagerIdentityCard;
+	}
+
+	
 
 }

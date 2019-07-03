@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import otdav.entities.TypeWork;
 import otdav.entities.Work;
 import otdav.services.IWorkService;
 
@@ -14,23 +15,13 @@ public class WorkService implements IWorkService{
 	EntityManager em;
 
 	@Override
-	public int addWork(Work work) {
+	public void addWork(Work work) {
+		// TODO Auto-generated method stub
 		em.persist(work);
-		return work.getIdWork();
+		
+		
 	}
-
-	@Override
-	public String removeWork(int idWork) {
-		if(em.find(Work.class, idWork)==null)
-		{
-			return "idWork ="+idWork+"d'ont existe";
-		}
-		else{
-		em.remove(em.find(Work.class, idWork));
-		return "Delete succeful";
-		}
-	}
-
+	
 	@Override
 	public String updateWork(Work NewWork) {
 		if (em.find(Work.class, NewWork.getIdWork())==null)
@@ -39,20 +30,24 @@ public class WorkService implements IWorkService{
 		}
 		else{
 			System.out.println("In updateOeuvre : ");
-			Work oeuvrs = em.find(Work.class, NewWork.getIdWork());
-			oeuvrs.setCategory(NewWork.getCategory());
-			oeuvrs.setTitre(NewWork.getTitre());
-			oeuvrs.setCompositeur(NewWork.getCompositeur());
-			oeuvrs.setVille(NewWork.getVille());
-			oeuvrs.setDate(NewWork.getDate());
-			oeuvrs.setGenre(NewWork.getGenre());
-			oeuvrs.setDuree(NewWork.getDuree());
-			oeuvrs.setPourcentAdaptateur(NewWork.getPourcentAdaptateur());
-			oeuvrs.setPourcentArrangeur(NewWork.getPourcentArrangeur());
-			oeuvrs.setPourcentAuteur(NewWork.getPourcentAuteur());
-			oeuvrs.setPourcentCompositeur(NewWork.getPourcentCompositeur());
-			oeuvrs.setPourcentEditeur(NewWork.getPourcentEditeur());
-	
+			Work work = em.find(Work.class, NewWork.getIdWork());			
+			work.setTitre(NewWork.getTitre());
+			work.setCompositeur(NewWork.getCompositeur());
+			work.setVille(NewWork.getVille());
+			work.setDate(NewWork.getDate());			
+			work.setDuree(NewWork.getDuree());
+			work.setPourcentAdaptateur(NewWork.getPourcentAdaptateur());
+			work.setPourcentArrangeur(NewWork.getPourcentArrangeur());
+			work.setPourcentAuteur(NewWork.getPourcentAuteur());
+			work.setPourcentCompositeur(NewWork.getPourcentCompositeur());
+			work.setPourcentEditeur(NewWork.getPourcentEditeur());
+			work.setBulletinOfdeclaration(NewWork.getBulletinOfdeclaration());
+			work.setCopydeclarationOfExistance(NewWork.getCopydeclarationOfExistance());
+			work.setCopymanagerIdentityCard(NewWork.getCopymanagerIdentityCard());
+			work.setCopyOfThePublicationOfCaompnyJORT(NewWork.getCopyOfThePublicationOfCaompnyJORT());
+			work.setCopyOfWork(NewWork.getCopyOfWork());
+			work.setCopyTaxIdentificationNumber(NewWork.getCopyTaxIdentificationNumber());
+			work.setTypeWork(NewWork.getTypeWork());
 	return "Updated with success ";
 }
 
@@ -70,5 +65,32 @@ public class WorkService implements IWorkService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	@Override
+	public Work approveWork(Work work) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Work revokeWork(Work work) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Work cancelWork(Work work) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Work> findWorkBytype(TypeWork etat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
