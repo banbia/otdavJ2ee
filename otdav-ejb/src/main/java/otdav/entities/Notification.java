@@ -55,7 +55,7 @@ public class Notification implements java.io.Serializable {
 		this.idNotification = idNotification;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idUser", nullable = false)
 	public User getUser() {
 		return this.user;

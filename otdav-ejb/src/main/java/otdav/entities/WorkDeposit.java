@@ -2,6 +2,7 @@ package otdav.entities;
 // Generated 30 juin 2019 11:35:09 by Hibernate Tools 4.0.1.Final
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "work_deposit", catalog = "pi_otdav")
 public class WorkDeposit implements java.io.Serializable {
-
+	@Id
 	private int idWorkDeposit;
 	private Integer idantifiantUnique;
 	private String titre;
@@ -24,8 +25,8 @@ public class WorkDeposit implements java.io.Serializable {
 	private String description;
 	private String support;
 	private Integer typeCategorie;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "workDeposit")
-	private Set<Deposit> deposits = new HashSet(0);
+	@OneToMany(mappedBy = "workDeposit")
+	private Set<Deposit> deposits;
 	public WorkDeposit() {
 	}
 
@@ -34,7 +35,7 @@ public class WorkDeposit implements java.io.Serializable {
 	}
 
 	public WorkDeposit(int idWorkDeposit, Integer idantifiantUnique, String titre, String auteur, String description,
-			String support, Integer typeCategorie, Set deposits) {
+			String support, Integer typeCategorie, Set<Deposit> deposits) {
 		this.idWorkDeposit = idWorkDeposit;
 		this.idantifiantUnique = idantifiantUnique;
 		this.titre = titre;
@@ -44,8 +45,6 @@ public class WorkDeposit implements java.io.Serializable {
 		this.typeCategorie = typeCategorie;
 		this.deposits = deposits;
 	}
-
-	@Id
 
 	@Column(name = "idWorkDeposit", unique = true, nullable = false)
 	public int getIdWorkDeposit() {
@@ -111,11 +110,11 @@ public class WorkDeposit implements java.io.Serializable {
 	}
 
 	
-	public Set getDeposits() {
+	public Set<Deposit> getDeposits() {
 		return this.deposits;
 	}
 
-	public void setDeposits(Set deposits) {
+	public void setDeposits(Set<Deposit> deposits) {
 		this.deposits = deposits;
 	}
 

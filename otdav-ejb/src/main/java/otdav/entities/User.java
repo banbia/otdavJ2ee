@@ -4,7 +4,9 @@ package otdav.entities;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -21,11 +23,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "user", catalog = "pi_otdav")
 public class User implements java.io.Serializable {
-
+	@Id
+	@Column(name = "idUser", unique = true, nullable = false)
 	private int idUser;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "resignation")
 	private Resignation resignation;
+	
 	private String lastName;
 	private String firstName;
 	private String cin;
@@ -55,18 +58,18 @@ public class User implements java.io.Serializable {
 	private String password;
 	private Integer role;
 	private Integer state;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Deposit> deposits = new HashSet(0);
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Notification> notifications = new HashSet(0);
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Work> works = new HashSet(0);
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Division> divisions = new HashSet(0);
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Document> documents = new HashSet(0);
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Resignation> resignations = new HashSet(0);
+	@OneToMany(mappedBy = "user")
+	private Set<Deposit> deposits;
+	@OneToMany(mappedBy = "user")
+	private Set<Notification> notifications ;
+	@OneToMany(mappedBy = "user")
+	private Set<Work> works ;
+	@OneToMany(mappedBy = "user")
+	private Set<Division> divisions ;
+	@OneToMany(mappedBy = "user")
+	private Set<Document> documents ;
+	@OneToMany(mappedBy = "user")
+	private Set<Resignation> resignations;
 
 	public User() {
 	}
@@ -80,8 +83,7 @@ public class User implements java.io.Serializable {
 			Integer identifiantUnique, String lieuNaissance, String nationalite, String raisonSocial, Integer numChild,
 			Integer numEnregistrements, String photo, String fax, String tel, String rib, String sexe, Date etatcivil,
 			Date dateEnregistrement, Integer typeEnregistrement, Integer typePerson, String login, String password,
-			Integer role, Integer state, Set deposits, Set notifications, Set works, Set divisions, Set documents,
-			Set resignations) {
+			Integer role, Integer state) {
 		this.idUser = idUser;
 		this.resignation = resignation;
 		this.lastName = lastName;
@@ -113,17 +115,9 @@ public class User implements java.io.Serializable {
 		this.password = password;
 		this.role = role;
 		this.state = state;
-		this.deposits = deposits;
-		this.notifications = notifications;
-		this.works = works;
-		this.divisions = divisions;
-		this.documents = documents;
-		this.resignations = resignations;
 	}
 
-	@Id
-
-	@Column(name = "idUser", unique = true, nullable = false)
+	
 	public int getIdUser() {
 		return this.idUser;
 	}
@@ -407,56 +401,56 @@ public class User implements java.io.Serializable {
 	}
 
 	
-	public Set getDeposits() {
+	public Set<Deposit> getDeposits() {
 		return this.deposits;
 	}
 
-	public void setDeposits(Set deposits) {
+	public void setDeposits(Set<Deposit> deposits) {
 		this.deposits = deposits;
 	}
 
 	
-	public Set getNotifications() {
+	public Set<Notification> getNotifications() {
 		return this.notifications;
 	}
 
-	public void setNotifications(Set notifications) {
+	public void setNotifications(Set<Notification> notifications) {
 		this.notifications = notifications;
 	}
 
 	
-	public Set getWorks() {
+	public Set<Work> getWorks() {
 		return this.works;
 	}
 
-	public void setWorks(Set works) {
+	public void setWorks(Set<Work> works) {
 		this.works = works;
 	}
 
 	
-	public Set getDivisions() {
+	public Set<Division> getDivisions() {
 		return this.divisions;
 	}
 
-	public void setDivisions(Set divisions) {
+	public void setDivisions(Set<Division> divisions) {
 		this.divisions = divisions;
 	}
 
 	
-	public Set getDocuments() {
+	public Set<Document> getDocuments() {
 		return this.documents;
 	}
 
-	public void setDocuments(Set documents) {
+	public void setDocuments(Set<Document> documents) {
 		this.documents = documents;
 	}
 
 	
-	public Set getResignations() {
+	public Set<Resignation> getResignations() {
 		return this.resignations;
 	}
 
-	public void setResignations(Set resignations) {
+	public void setResignations(Set<Resignation> resignations) {
 		this.resignations = resignations;
 	}
 

@@ -1,6 +1,7 @@
 package otdav.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,13 +19,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "right", catalog = "pi_otdav")
 public class Right implements java.io.Serializable {
-
+	@Id
 	private int idRight;
 	private String libele;
 	private String reference;
 	private String description;
 	@ManyToMany(mappedBy="rights")
-	private Set<Work> works = new HashSet(0);
+	private List<Work> works;
 	public Right() {
 	}
 
@@ -32,7 +33,7 @@ public class Right implements java.io.Serializable {
 		this.idRight = idRight;
 	}
 
-	public Right(int idRight,String reference, String libele,String description, Set<Work> works) {
+	public Right(int idRight,String reference, String libele,String description, List<Work> works) {
 		this.idRight = idRight;
 		this.reference = reference;
 		this.libele = libele;
@@ -45,7 +46,6 @@ public class Right implements java.io.Serializable {
 		this.libele = libele;
 		this.description = description;
 	}
-	@Id
 	@Column(name = "idRight", unique = true, nullable = false)
 	public int getIdRight() {
 		return this.idRight;
@@ -79,11 +79,11 @@ public class Right implements java.io.Serializable {
 		this.description = description;
 	}
 	
-	public Set<Work> getWorks() {
+	public List<Work> getWorks() {
 		return this.works;
 	}
 
-	public void setWorks(Set<Work> works) {
+	public void setWorks(List<Work> works) {
 		this.works = works;
 	}
 

@@ -25,9 +25,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "work", catalog = "pi_otdav")
 public class Work implements java.io.Serializable {
-
+	@Id
 	private int idWork;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user", nullable = false)
 	private User user;
 	private String titre;
@@ -111,10 +111,7 @@ public class Work implements java.io.Serializable {
 		this.pourcentCompositeur = pourcentCompositeur;
 		this.pourcentEditeur = pourcentEditeur;
 		this.typeWork = typeWork;
-		this.divisions = divisions;
 	}
-
-	@Id
 
 	@Column(name = "idWork", unique = true, nullable = false)
 	public int getIdWork() {

@@ -20,8 +20,6 @@ public class Category implements java.io.Serializable {
 
 	private int idCategory;
 	private String libele;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-	private Set<Work> works = new HashSet(0);
 	public Category() {
 	}
 
@@ -29,10 +27,9 @@ public class Category implements java.io.Serializable {
 		this.idCategory = idCategory;
 	}
 
-	public Category(int idCategory, String libele, Set<Work> works) {
+	public Category(int idCategory, String libele) {
 		this.idCategory = idCategory;
 		this.libele = libele;
-		this.works = works;
 	}
 
 	@Id
@@ -55,13 +52,5 @@ public class Category implements java.io.Serializable {
 		this.libele = libele;
 	}
 
-	
-	public Set<Work> getWorks() {
-		return this.works;
-	}
-
-	public void setWorks(Set<Work> works) {
-		this.works = works;
-	}
 
 }

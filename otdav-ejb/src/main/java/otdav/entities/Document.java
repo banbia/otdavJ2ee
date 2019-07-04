@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 public class Document implements java.io.Serializable {
 
 	private int idDocument;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user", nullable = false)
 	private User user;
 	private Date dateAjout;

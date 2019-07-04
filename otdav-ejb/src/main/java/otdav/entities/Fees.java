@@ -15,13 +15,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "fees", catalog = "pi_otdav")
 public class Fees implements java.io.Serializable {
-
+	@Id
 	private int idFees;
 	private Float montant;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "categoryUser", nullable = false)
 	private CategoryUser categoryUser;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user", nullable = false)
 	private User user;
 	public Fees() {
@@ -67,7 +67,6 @@ public class Fees implements java.io.Serializable {
 		this.montant = montant;
 	}
 
-	@Id
 
 	@Column(name = "idFees", unique = true, nullable = false)
 	public int getIdFees() {

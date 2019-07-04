@@ -1,6 +1,7 @@
 package otdav.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,8 +17,8 @@ public class CategoryUser implements java.io.Serializable  {
 
 	private int idCategory;
 	private String libele;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryUser")
-	private Set<Fees> fees = new HashSet(0);
+	@OneToMany(mappedBy = "categoryUser")
+	private Set<Fees> fees;
 	
 	public CategoryUser() {		
 		

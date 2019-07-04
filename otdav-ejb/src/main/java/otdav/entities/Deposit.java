@@ -20,7 +20,11 @@ import javax.persistence.TemporalType;
 public class Deposit implements java.io.Serializable {
 
 	private int idDeposit;
+	@ManyToOne
+	@JoinColumn(name = "idUser", nullable = false)
 	private User user;
+	@ManyToOne
+	@JoinColumn(name = "idWorkDeposit", nullable = false)
 	private WorkDeposit workDeposit;
 	private Integer numDepot;
 	private Date dateDepot;
@@ -52,7 +56,6 @@ public class Deposit implements java.io.Serializable {
 	}
 
 	@Id
-
 	@Column(name = "idDeposit", unique = true, nullable = false)
 	public int getIdDeposit() {
 		return this.idDeposit;
@@ -62,8 +65,7 @@ public class Deposit implements java.io.Serializable {
 		this.idDeposit = idDeposit;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUser", nullable = false)
+	
 	public User getUser() {
 		return this.user;
 	}
@@ -72,8 +74,7 @@ public class Deposit implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idWorkDeposit", nullable = false)
+	
 	public WorkDeposit getWorkDeposit() {
 		return this.workDeposit;
 	}

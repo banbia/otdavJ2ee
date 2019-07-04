@@ -2,6 +2,7 @@ package otdav.entities;
 // Generated 30 juin 2019 11:35:09 by Hibernate Tools 4.0.1.Final
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,14 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "resignation", catalog = "pi_otdav")
 public class Resignation implements java.io.Serializable {
-
+	@Id
 	private int idResignation;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user", nullable = false)
 	private User user;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resignation")
-	private Set<User> users = new HashSet(0);
-
 	public Resignation() {
 	}
 
@@ -34,14 +32,8 @@ public class Resignation implements java.io.Serializable {
 		this.user = user;
 	}
 
-	public Resignation(int idResignation, User user, Set users) {
-		this.idResignation = idResignation;
-		this.user = user;
-		this.users = users;
-	}
 
-	@Id
-
+	
 	@Column(name = "idResignation", unique = true, nullable = false)
 	public int getIdResignation() {
 		return this.idResignation;
@@ -58,15 +50,6 @@ public class Resignation implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	
-	public Set getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Set users) {
-		this.users = users;
 	}
 
 }

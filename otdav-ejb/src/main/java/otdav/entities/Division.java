@@ -40,7 +40,7 @@ public class Division implements java.io.Serializable {
 		this.idDivision = idDivision;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idUser", nullable = false)
 	public User getUser() {
 		return this.user;
@@ -50,7 +50,7 @@ public class Division implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idWork", nullable = false)
 	public Work getWork() {
 		return this.work;
