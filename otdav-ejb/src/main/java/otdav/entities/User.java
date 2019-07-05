@@ -26,7 +26,7 @@ public class User implements java.io.Serializable {
 	@Id
 	@Column(name = "idUser", unique = true, nullable = false)
 	private int idUser;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Resignation resignation;
 	
 	private String lastName;

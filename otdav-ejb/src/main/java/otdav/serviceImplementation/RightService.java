@@ -32,7 +32,6 @@ public class RightService implements IRightService{
 	}
 	
 	public Right getRightByReference(String reference){
-		
 		for (Right l:rights){
 			if(l.getReference()==reference)
 				return l;
