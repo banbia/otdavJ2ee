@@ -29,7 +29,7 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Banbia/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar">
+	<classpathentry kind="lib" path="F:/PI/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../lib"/>
 		</attributes>

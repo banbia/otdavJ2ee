@@ -18,7 +18,7 @@ public class CategoryUser implements java.io.Serializable  {
 	private int idCategory;
 	private String libele;
 	@OneToMany(mappedBy = "categoryUser")
-	private Set<Fees> fees;
+	private Set<User> user;
 	
 	public CategoryUser() {		
 		

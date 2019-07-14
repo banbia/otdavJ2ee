@@ -28,6 +28,9 @@ public class User implements java.io.Serializable {
 	private int idUser;
 	@ManyToOne
 	private Resignation resignation;
+	@ManyToOne
+	@JoinColumn(name = "categoryUser", nullable = false)
+	private CategoryUser categoryUser;
 	
 	private String lastName;
 	private String firstName;

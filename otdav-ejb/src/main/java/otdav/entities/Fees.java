@@ -17,21 +17,17 @@ import javax.persistence.Table;
 public class Fees implements java.io.Serializable {
 	@Id
 	private int idFees;
-	private Float montant;
+	private Float montant;	
 	@ManyToOne
-	@JoinColumn(name = "categoryUser", nullable = false)
-	private CategoryUser categoryUser;
-	@ManyToOne
-	@JoinColumn(name = "user", nullable = false)
+	@JoinColumn(name = "idUser", nullable = false)
 	private User user;
 	public Fees() {
 	}
 
-	public Fees(int idFees, Float montant, CategoryUser categoryUser, User user) {
+	public Fees(int idFees, Float montant, User user) {
 		super();
 		this.idFees = idFees;
 		this.montant = montant;
-		this.categoryUser = categoryUser;
 		this.user = user;
 	}
 
@@ -43,24 +39,17 @@ public class Fees implements java.io.Serializable {
 		this.user = user;
 	}
 
-	public void setCategoryUser(CategoryUser categoryUser) {
-		this.categoryUser = categoryUser;
-	}
+	
 
 	public Fees(int idFees, Float montant, int idCategory) {
 		super();
 		this.idFees = idFees;
 		this.montant = montant;
-		this.categoryUser = categoryUser;
 	}
 
-	public CategoryUser getCategoryUser() {
-		return categoryUser;
-	}
 
-	public void setCategoryUser(int idCategory) {
-		this.categoryUser = categoryUser;
-	}
+
+	
 
 	public Fees(int idFees, Float montant) {
 		this.idFees = idFees;
